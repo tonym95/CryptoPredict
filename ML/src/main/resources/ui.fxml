@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SceneController">
+    <children>
+        <VBox prefHeight="454.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox cache="true" prefHeight="79.0" prefWidth="638.0" style="-fx-background-color: #303030;">
+                    <children>
+                        <ImageView fx:id="logoImageView" fitHeight="76.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin></ImageView>
+                        <Label text="CryptoPredictor" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="System Italic" size="40.0" />
+                            </font>
+                     <effect>
+                        <Glow level="0.43" />
+                     </effect>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <HBox fx:id="mainHbox" prefHeight="388.0" prefWidth="638.0" style="-fx-background-color: #f8f8f8;">
+                    <children>
+                        <VBox fx:id="toolbarVBox" cache="true" prefHeight="386.0" prefWidth="151.0" style="-fx-background-color: #303030;">
+                     <children>
+                        <ToggleButton fx:id="pickCoinButton" mnemonicParsing="false" onMouseClicked="#pickCoin" prefHeight="78.0" prefWidth="159.0" selected="true" style="-fx-background-color: #303030;" text="Pick Coin" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="toggleGroup1" />
+                           </toggleGroup>
+                           <effect>
+                              <Glow level="0.23" />
+                           </effect>
+                        </ToggleButton>
+                        <ToggleButton fx:id="updateDataButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="85.0" prefWidth="151.0" style="-fx-background-color: #303030;" text="Update" textFill="WHITE" toggleGroup="$toggleGroup1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <effect>
+                              <Glow level="0.23" />
+                           </effect>
+                        </ToggleButton>
+                        <ToggleButton fx:id="predictCoinButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#predict" prefHeight="78.0" prefWidth="159.0" style="-fx-background-color: #303030;" text="Predict" textFill="WHITE" toggleGroup="$toggleGroup1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <effect>
+                              <Glow level="0.23" />
+                           </effect>
+                        </ToggleButton>
+                     </children>
+                        </VBox>
+                        <HBox fx:id="pickCoinHBox" prefHeight="378.0" prefWidth="488.0">
+                            <children>
+                                <JFXListView fx:id="searchListView" prefHeight="454.0" prefWidth="131.0">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" left="50.0" top="20.0" />
+                                    </HBox.margin>
+                                </JFXListView>
+                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: transparent;">
+                                    <children>
+                                        <CustomTextField fx:id="searchTextField" onKeyPressed="#filterList" onMouseClicked="#searchBarTextClear" text="Search">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <font>
+                                                <Font name="System Italic" size="13.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets top="50.0" />
+                                            </VBox.margin>
+                                        </CustomTextField>
+                                        <ImageView fx:id="selectedCoinImageView" fitHeight="109.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+                                            <VBox.margin>
+                                                <Insets top="40.0" />
+                                            </VBox.margin>
+                                        </ImageView>
+                                        <Label fx:id="selectedCoinNameLabel" alignment="TOP_CENTER" prefHeight="37.0" prefWidth="154.0" text="Label">
+                                            <padding>
+                                                <Insets top="20.0" />
+                                            </padding>
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="100.0" right="50.0" />
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <VBox fx:id="updateDataVBox" prefHeight="378.0" prefWidth="488.0">
+                            <children>
+                                <Label fx:id="updateLabel" text="Label">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="100.0" right="100.0" top="100.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="dataLabel" text="Label">
+                                    <VBox.margin>
+                                        <Insets left="100.0" right="100.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="predictVBox" prefHeight="378.0" prefWidth="488.0">
+                            <children>
+                                <LineChart fx:id="lineChart" prefHeight="287.0" prefWidth="374.0">
+                                    <xAxis>
+                                        <NumberAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                    </yAxis>
+                                </LineChart>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <VBox prefHeight="41.0" prefWidth="48.0">
+                                            <children>
+                                                <Label prefHeight="14.0" prefWidth="29.0" text="MSE:">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="RMSE:">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets left="50.0" />
+                                            </HBox.margin>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label fx:id="mseValueLabel" text="Label" />
+                                                <Label fx:id="rmseValueLabel" text="Label" />
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="39.0" prefWidth="40.0">
+                                            <children>
+                                                <Label text="MAE:">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label text="R^2:">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label fx:id="maeValueLabel" text="Label" />
+                                                <Label fx:id="r2ValueLabel" text="Label" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
